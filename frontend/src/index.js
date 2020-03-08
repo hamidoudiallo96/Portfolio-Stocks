@@ -7,7 +7,23 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 import App from "./App";
+import rootReducers from "./redux/reducers/index";
 
 import "./index.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const reduxDevTool =
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+const store = createStore(
+	rootReducers,
+	compose(applyMiddleware(thunk, logger), reduxDevTool)
+);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Router>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById("root")
+);
