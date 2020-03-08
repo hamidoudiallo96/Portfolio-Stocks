@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :stocks
   get "/auth", to: "auth#persist"
   post "/login", to: "auth#login"
   resources :users, only: [:show, :create, :update]
