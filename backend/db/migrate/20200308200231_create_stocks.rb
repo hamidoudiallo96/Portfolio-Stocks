@@ -4,7 +4,7 @@ class CreateStocks < ActiveRecord::Migration[6.0]
       t.string :ticker
       t.decimal :open_price
       t.decimal :current_price
-      t.integer :shares
+      t.integer :shares, default: 40
 
       t.timestamps
     end
