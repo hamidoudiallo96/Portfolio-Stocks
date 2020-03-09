@@ -16,6 +16,14 @@ function App() {
 		<div>
 			<NavBarContainer />
 			<Routes />
+			<p
+				style={{
+					margin: "40px auto 0px auto",
+					textAlign: "center"
+				}}
+			>
+				Credits: <a href="https://iexcloud.io">IEX Cloud</a>
+			</p>
 		</div>
 	);
 }
