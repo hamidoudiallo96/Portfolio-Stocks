@@ -1,8 +1,8 @@
 // HTTP Request
 const BASE_URL = "http://localhost:3001";
-const SIGNUP_URL = BASE_URL + "/users";
-const LOGIN_URL = BASE_URL + "/login";
-const PERSIST_URL = BASE_URL + "/auth";
+const SIGNUP_URL = `${BASE_URL}/users`;
+const LOGIN_URL = `${BASE_URL}/login`;
+const PERSIST_URL = `${BASE_URL}/auth`;
 
 const setUserAction = userObj => ({
 	type: "SET_USER",
@@ -26,7 +26,8 @@ const newUserToDB = userObj => dispatch => {
 	fetch(SIGNUP_URL, config)
 		.then(res => res.json())
 		.then(userData => {
-			dispatch(userData);
+			// debugger;
+			dispatch(setUserAction(userData.user));
 			localStorage.setItem("token", userData.token);
 		})
 		.catch(error => console.log(error));
@@ -44,7 +45,10 @@ const loginUserToDB = userObj => dispatch => {
 	};
 	fetch(LOGIN_URL, config)
 		.then(res => res.json())
-		.then(userData => dispatch(userData))
+		.then(userData => {
+			dispatch(setUserAction(userData.user));
+			localStorage.setItem("token", userData.token);
+		})
 		.catch(error => console.log(error));
 };
 
@@ -58,7 +62,9 @@ const persistUser = () => dispatch => {
 
 	fetch(PERSIST_URL, config)
 		.then(res => res.json())
-		.then(userData => dispatch(setUserAction(userData)))
+		.then(userData => {
+			dispatch(setUserAction(userData));
+		})
 		.catch(error => console.log(error));
 };
 

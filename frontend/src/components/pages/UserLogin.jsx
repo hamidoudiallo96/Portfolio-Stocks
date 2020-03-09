@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+
+import loginActions from "../../redux/actions/loginActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -33,14 +36,19 @@ const useStyles = makeStyles({
 		color: "whitesmoke",
 		margin: "10px auto 0 auto",
 		"&:hover": {
-			color: "#a12bcc",
-			background: "whitesmoke"
+			background: "#a12bcc",
+			color: "whitesmoke"
 		}
+	},
+	link: {
+		textDecoration: "none",
+		color: "whitesmoke"
 	}
 });
 
-const UserLogin = () => {
+const UserLogin = props => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const [loginInput, setLoginInput] = useState({
 		email: "",
 		password: ""
@@ -52,6 +60,8 @@ const UserLogin = () => {
 
 	const handleSubmit = evt => {
 		evt.preventDefault();
+		dispatch(loginActions.loginUserToDB(loginInput));
+		props.history.push("/stocks");
 	};
 	return (
 		<div className={classes.root}>
@@ -67,7 +77,7 @@ const UserLogin = () => {
 				/>
 				<input
 					className={classes.input}
-					type="text"
+					type="password"
 					placeholder="Password"
 					name="password"
 					value={loginInput.password}

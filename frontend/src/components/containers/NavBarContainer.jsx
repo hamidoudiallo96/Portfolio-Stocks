@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
@@ -21,12 +21,18 @@ const useStyles = makeStyles({
 
 const NavBarContainer = () => {
 	const classes = useStyles();
-
+	const currentUser = useSelector(state => state.login.currentUser);
 	return (
 		<div className={classes.root}>
-			<Link className={classes.link} to="/">
-				<h1 className={classes.logo}>StockFolio</h1>
-			</Link>
+			{currentUser.email ? (
+				<Link className={classes.link} to="/stocks">
+					<h1 className={classes.logo}>StockFolio</h1>
+				</Link>
+			) : (
+				<Link className={classes.link} to="/">
+					<h1 className={classes.logo}>StockFolio</h1>
+				</Link>
+			)}
 			<NavBar />
 		</div>
 	);

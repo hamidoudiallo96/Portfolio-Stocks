@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import loginActions from "../../redux/actions/loginActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -11,24 +14,45 @@ const useStyles = makeStyles({
 
 		listStyle: "none"
 	},
+	link: {
+		textDecoration: "none",
+		color: "black"
+	},
 	navLinks: {
 		paddingRight: "45px"
 	}
 });
 const NavBar = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const currentUser = useSelector(state => state.login.currentUser);
+	const handleClick = () => {
+		dispatch(loginActions.logoutUser());
+	};
 	return (
 		<div>
 			{currentUser.email ? (
 				<ul className={classes.root}>
-					<li className={classes.navLinks}>Transactions</li>
-					<li className={classes.navLinks}>Portolio</li>
+					<Link className={classes.link} to="/transactions">
+						<li className={classes.navLinks}>Transactions</li>
+					</Link>
+
+					<Link className={classes.link} to="/portfolio">
+						<li className={classes.navLinks}>Portolio</li>
+					</Link>
+
+					<Link onClick={handleClick} className={classes.link} to="/">
+						<li className={classes.navLinks}>Logout</li>
+					</Link>
 				</ul>
 			) : (
 				<ul className={classes.root}>
-					<li className={classes.navLinks}>Login</li>
-					<li className={classes.navLinks}>SignUp</li>
+					<Link className={classes.link} to="/login">
+						<li className={classes.navLinks}>Login</li>
+					</Link>
+					<Link className={classes.link} to="/signup">
+						<li className={classes.navLinks}>SignUp</li>
+					</Link>
 				</ul>
 			)}
 		</div>
