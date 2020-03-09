@@ -5,7 +5,6 @@ import Stocks from "../pages/Stocks";
 
 const useStyles = makeStyles({
 	root: {
-		// border: "5px solid #a12bcc"
 		margin: "100px auto ",
 		width: "50%"
 	},
@@ -13,10 +12,14 @@ const useStyles = makeStyles({
 		color: "#a12bcc",
 		textAlign: "center",
 		marginBottom: "50px"
+	},
+	userBalance: {
+		textAlign: "center"
 	}
 });
 const StocksContainer = props => {
 	const classes = useStyles();
+	const currentUser = useSelector(state => state.login.currentUser);
 	const stocks = useSelector(state => state.stock.stocks);
 	const renderStocks = () => {
 		return stocks.map(stock => {
@@ -26,6 +29,9 @@ const StocksContainer = props => {
 	return (
 		<div className={classes.root}>
 			<h1 className={classes.title}>Current Stock Options</h1>
+			<h5 className={classes.userBalance}>
+				Your Current Balance: ${currentUser.balance}
+			</h5>
 			{renderStocks()}
 		</div>
 	);
