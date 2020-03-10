@@ -5,6 +5,7 @@ import HomePage from "./components/pages/Homepage";
 import UserSignUp from "./components/pages/UserSignUp";
 import UserLogin from "./components/pages/UserLogin";
 import StocksContainer from "./components/containers/StocksContainer";
+import PurchaseForm from "./components/pages/PurchaseForm";
 
 const Routes = () => {
 	return (
@@ -13,6 +14,7 @@ const Routes = () => {
 			<Route exact path="/signup" component={UserSignUp} />
 			<Route exact path="/login" component={UserLogin} />
 			<Route exact path="/stocks" component={StocksContainer} />
+			<Route exact path="/purchase" component={PurchaseForm} />
 		</Switch>
 	);
 };

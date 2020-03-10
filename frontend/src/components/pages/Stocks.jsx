@@ -46,6 +46,10 @@ const Stocks = props => {
 			return <h3 className={classes.med}>({props.stock.ticker})</h3>;
 		}
 	};
+
+	const handleClick = stockObj => {
+		console.log("stockObj: ", stockObj);
+	};
 	return (
 		<div className={classes.root}>
 			<h2>BUY</h2>
@@ -57,7 +61,7 @@ const Stocks = props => {
 			<Button
 				variant="outlined"
 				className={classes.purchaseButton}
-				onClick={null}
+				onClick={() => handleClick(props.stock)}
 			>
 				Purchase
 			</Button>

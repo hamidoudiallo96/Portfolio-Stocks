@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import loginActions from "./redux/actions/loginActions";
 import stocksActions from "./redux/actions/stocksActions";
+import purchaseActions from "./redux/actions/purchaseActions";
 import NavBarContainer from "./components/containers/NavBarContainer";
 import Routes from "./Routes";
 
@@ -15,6 +16,7 @@ function App() {
 		if (localStorage.token) {
 			dispatch(loginActions.persistUser());
 			dispatch(stocksActions.getStocksFromDB());
+			dispatch(purchaseActions.getTransactionsFromDB());
 		}
 	}, [dispatch]);
 	return (

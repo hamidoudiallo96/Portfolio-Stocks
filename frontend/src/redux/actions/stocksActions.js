@@ -1,4 +1,5 @@
 const STOCKS_URL = "http://localhost:3001/stocks";
+const STOCKS_UPDATE = stocksId => `${STOCKS_URL}/${stocksId}`;
 
 const setStocks = stocks => ({
 	type: "SET_STOCKS",
@@ -17,6 +18,8 @@ const getStocksFromDB = () => dispatch => {
 		.then(stocksData => dispatch(setStocks(stocksData)))
 		.catch(error => console.log(error));
 };
+
+// TODO: DO STOCK SHARES UPDATE;
 
 export default {
 	getStocksFromDB
