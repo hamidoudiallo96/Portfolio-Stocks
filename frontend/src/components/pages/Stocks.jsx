@@ -63,13 +63,15 @@ const Stocks = props => {
 			<h4 className={classes.shares}>{props.stock.shares} Shares</h4>
 			<p>@</p>
 			<h4>${props.stock.current_price}</h4>
-			<Button
-				variant="outlined"
-				className={classes.purchaseButton}
-				onClick={() => handleClick(props.stock)}
-			>
-				Purchase
-			</Button>
+			{props.stock.shares > 0 ? (
+				<Button
+					variant="outlined"
+					className={classes.purchaseButton}
+					onClick={() => handleClick(props.stock)}
+				>
+					Purchase
+				</Button>
+			) : null}
 		</div>
 	);
 };

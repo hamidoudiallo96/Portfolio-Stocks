@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import Stocks from "../pages/Stocks";
+import stocksActions from "../../redux/actions/stocksActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -18,6 +20,10 @@ const useStyles = makeStyles({
 	}
 });
 const StocksContainer = props => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(stocksActions.getStocksFromDB());
+	}, [dispatch]);
 	const classes = useStyles();
 	const currentUser = useSelector(state => state.login.currentUser);
 	const stocks = useSelector(state => state.stock.stocks);

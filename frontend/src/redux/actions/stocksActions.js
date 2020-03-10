@@ -61,6 +61,8 @@ const patchStockToDB = (stockObj, stockQuanity) => dispatch => {
 			dispatch(setCurrentStock(stockData));
 		})
 		.catch(error => console.log(error));
+
+	getStocksFromDB();
 };
 
 export default {

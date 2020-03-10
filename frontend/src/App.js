@@ -15,7 +15,6 @@ function App() {
 	useEffect(() => {
 		if (localStorage.token) {
 			dispatch(loginActions.persistUser());
-			dispatch(stocksActions.getStocksFromDB());
 			dispatch(purchaseActions.getTransactionsFromDB());
 		}
 	}, [dispatch]);

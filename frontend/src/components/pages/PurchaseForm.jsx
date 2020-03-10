@@ -36,6 +36,17 @@ const useStyles = makeStyles({
 			color: "whitesmoke"
 		}
 	},
+	closedButton: {
+		width: "100%",
+		borderRadius: "10px",
+		background: "#a12bcc",
+		color: "whitesmoke",
+		margin: "20px auto 0 auto",
+		"&:hover": {
+			background: "#a12bcc",
+			color: "whitesmoke"
+		}
+	},
 	low: {
 		color: "#f50c2b"
 	},
@@ -59,13 +70,14 @@ const useStyles = makeStyles({
 	}
 });
 const PurchaseForm = props => {
-	console.log(props.history);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const currentUser = useSelector(state => state.login.currentUser);
 	const currentStock = JSON.parse(localStorage.stock);
 	const [quantityInput, setQuantityInput] = useState();
-
+	const current_price = parseInt(currentStock.current_price);
+	const userBalance = parseInt(currentUser.balance);
+	console.log(currentUser.balance, currentStock.current_price);
 	const renderTicker = () => {
 		if (currentStock.current_price > currentStock.open_price) {
 			return <h3 className={classes.high}> {currentStock.ticker}</h3>;
@@ -82,9 +94,10 @@ const PurchaseForm = props => {
 	};
 
 	const handleSubmit = evt => {
+		let stockPrice = currentStock.current_price * quantityInput;
 		console.log("clicked");
 		evt.preventDefault();
-		let stockPrice = currentStock.current_price * quantityInput;
+
 		dispatch(
 			purchaseActions.postTransactionToDB(
 				stockPrice,
@@ -95,8 +108,11 @@ const PurchaseForm = props => {
 		);
 		dispatch(loginActions.patchUserBalanceToDB(currentUser, stockPrice));
 		dispatch(stockActions.patchStockToDB(currentStock, quantityInput));
+
 		setQuantityInput();
-		props.history.push("/stocks");
+		setTimeout(() => {
+			props.history.push("/stocks");
+		}, 1000);
 	};
 	return (
 		<div className={classes.root}>
@@ -113,9 +129,25 @@ const PurchaseForm = props => {
 					placeholder="Quantity"
 					onChange={handleChange}
 				/>
-				<Button className={classes.button} variant="outlined" type="submit">
-					Buy
-				</Button>
+				{userBalance > current_price ? (
+					<Button
+						className={classes.button}
+						disabled={false}
+						variant="outlined"
+						type="submit"
+					>
+						Buy
+					</Button>
+				) : (
+					<Button
+						className={classes.button}
+						disabled={true}
+						variant="outlined"
+						type="submit"
+					>
+						Buy
+					</Button>
+				)}
 			</form>
 		</div>
 	);
