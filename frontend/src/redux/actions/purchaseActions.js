@@ -5,7 +5,7 @@ const setTransactions = transactions => ({
 	payload: transactions
 });
 
-const getTransactionsFromDB = () => dispatch => {
+const getTransactionsFromDB = userId => dispatch => {
 	let config = {
 		method: "GET",
 		headers: {
@@ -15,7 +15,9 @@ const getTransactionsFromDB = () => dispatch => {
 
 	fetch(BASE_URL, config)
 		.then(res => res.json())
-		.then(transactionData => dispatch(setTransactions(transactionData)))
+		.then(transactionData => {
+			dispatch(setTransactions(transactionData));
+		})
 		.catch(error => console.log(error));
 };
 // "price"
