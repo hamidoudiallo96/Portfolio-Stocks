@@ -22,7 +22,36 @@ const getTransactionsFromDB = () => dispatch => {
 		.then(transactionData => dispatch(setTransactions(transactionData)))
 		.catch(error => console.log(error));
 };
+// "price"
+// "quantity"
+const postTransactionToDB = (
+	stockPrice,
+	stockQuantity,
+	userId,
+	stockId
+) => dispatch => {
+	debugger;
+	let config = {
+		method: "POST",
+		headers: {
+			Authorization: `Bearer ${localStorage.token}`,
+			Accept: "application/json",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			price: stockPrice,
+			quantity: stockQuantity,
+			user_id: userId,
+			stock_id: stockId
+		})
+	};
+	fetch(BASE_URL, config)
+		.then(res => res.json())
+		.then(postData => console.log(postData))
+		.catch(error => console.log(error));
+};
 
 export default {
-	getTransactionsFromDB
+	getTransactionsFromDB,
+	postTransactionToDB
 };

@@ -1,6 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+
+import stocksActions from "../../redux/actions/stocksActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -37,6 +40,7 @@ const useStyles = makeStyles({
 
 const Stocks = props => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const renderTicker = () => {
 		if (props.stock.current_price > props.stock.open_price) {
 			return <h3 className={classes.low}>({props.stock.ticker})</h3>;
@@ -48,7 +52,8 @@ const Stocks = props => {
 	};
 
 	const handleClick = stockObj => {
-		console.log("stockObj: ", stockObj);
+		dispatch(stocksActions.getCurrentStock(stockObj));
+		props.history.push("/purchase");
 	};
 	return (
 		<div className={classes.root}>
