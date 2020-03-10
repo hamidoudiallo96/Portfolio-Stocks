@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/transactions";
+const BASE_URL = "https://fast-inlet-64606.herokuapp.com/";
 
 const setTransactions = transactions => ({
 	type: "GET_TRANSACTIONS",
