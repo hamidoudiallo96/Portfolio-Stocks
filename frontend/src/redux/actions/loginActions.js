@@ -70,7 +70,6 @@ const persistUser = () => dispatch => {
 
 const patchUserBalanceToDB = (userObj, stockPrice) => dispatch => {
 	let userBalance = userObj.balance - stockPrice;
-	debugger;
 	let config = {
 		method: "PATCH",
 		headers: {
@@ -84,9 +83,7 @@ const patchUserBalanceToDB = (userObj, stockPrice) => dispatch => {
 	};
 	fetch(`${SIGNUP_URL}/${userObj.id}`, config)
 		.then(res => res.json())
-		.then(userData => {
-			debugger;
-		})
+		.then(userData => dispatch(setUserAction(userData)))
 		.catch(error => console.log(error));
 };
 

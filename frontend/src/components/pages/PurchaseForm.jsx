@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 
 import purchaseActions from "../../redux/actions/purchaseActions";
 import loginActions from "../../redux/actions/loginActions";
+import stockActions from "../../redux/actions/stocksActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -93,6 +94,7 @@ const PurchaseForm = props => {
 			)
 		);
 		dispatch(loginActions.patchUserBalanceToDB(currentUser, stockPrice));
+		dispatch(stockActions.patchStockToDB(currentStock, quantityInput));
 		setQuantityInput();
 		props.history.push("/stocks");
 	};

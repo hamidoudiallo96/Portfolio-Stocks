@@ -42,8 +42,29 @@ const getCurrentStock = stockObj => dispatch => {
 };
 
 // TODO: DO STOCK SHARES UPDATE;
+const patchStockToDB = (stockObj, stockQuanity) => dispatch => {
+	let remainingShares = stockObj.shares - stockQuanity;
+	let config = {
+		method: "PATCH",
+		headers: {
+			Authorization: `Bearer ${localStorage.token}`,
+			Accept: "application/json",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			shares: remainingShares
+		})
+	};
+	fetch(STOCKS_UPDATE(stockObj.id), config)
+		.then(res => res.json())
+		.then(stockData => {
+			dispatch(setCurrentStock(stockData));
+		})
+		.catch(error => console.log(error));
+};
 
 export default {
 	getStocksFromDB,
-	getCurrentStock
+	getCurrentStock,
+	patchStockToDB
 };
