@@ -1,7 +1,3 @@
-// Get
-// Post
-// Update
-
 const BASE_URL = "http://localhost:3001/transactions";
 
 const setTransactions = transactions => ({
@@ -30,7 +26,6 @@ const postTransactionToDB = (
 	userId,
 	stockId
 ) => dispatch => {
-	debugger;
 	let config = {
 		method: "POST",
 		headers: {

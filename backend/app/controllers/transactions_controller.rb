@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.create(transaction_params)
-
+    # byebug
     if @transaction.valid?
       render json: @transaction
     else

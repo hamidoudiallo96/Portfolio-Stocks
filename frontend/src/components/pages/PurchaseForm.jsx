@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
 import purchaseActions from "../../redux/actions/purchaseActions";
+import loginActions from "../../redux/actions/loginActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -57,6 +58,7 @@ const useStyles = makeStyles({
 	}
 });
 const PurchaseForm = props => {
+	console.log(props.history);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const currentUser = useSelector(state => state.login.currentUser);
@@ -90,6 +92,9 @@ const PurchaseForm = props => {
 				currentStock.id
 			)
 		);
+		dispatch(loginActions.patchUserBalanceToDB(currentUser, stockPrice));
+		setQuantityInput();
+		props.history.push("/stocks");
 	};
 	return (
 		<div className={classes.root}>

@@ -68,6 +68,28 @@ const persistUser = () => dispatch => {
 		.catch(error => console.log(error));
 };
 
+const patchUserBalanceToDB = (userObj, stockPrice) => dispatch => {
+	let userBalance = userObj.balance - stockPrice;
+	debugger;
+	let config = {
+		method: "PATCH",
+		headers: {
+			Authorization: `Bearer ${localStorage.token}`,
+			Accept: "application/json",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			balance: userBalance
+		})
+	};
+	fetch(`${SIGNUP_URL}/${userObj.id}`, config)
+		.then(res => res.json())
+		.then(userData => {
+			debugger;
+		})
+		.catch(error => console.log(error));
+};
+
 const logoutUser = () => dispatch => {
 	dispatch(clearUserAction());
 	localStorage.clear();
@@ -77,5 +99,6 @@ export default {
 	newUserToDB,
 	loginUserToDB,
 	persistUser,
-	logoutUser
+	logoutUser,
+	patchUserBalanceToDB
 };
