@@ -7,9 +7,8 @@ import Transactions from "../pages/Transactions";
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
-		flexDirection: "row",
+		flexDirection: "column",
 		justifyContent: "space-evenly",
-		borderBottom: "5px solid #e6e6e6",
 		alignItems: "center",
 		margin: "100px auto ",
 		width: "60%"
@@ -18,38 +17,28 @@ const useStyles = makeStyles({
 		color: "#a12bcc",
 		textAlign: "center",
 		margin: "0 auto 50px auto"
+	},
+	userBalance: {
+		margin: "0 auto"
 	}
 });
 
 const TransactionsContainer = props => {
 	const classes = useStyles();
-	// let stockArr = [];
-	const transactions = useSelector(
-		state => state.login.currentUser.transactions
-	);
-	const renderUniqueStocks = () => {
-		if (transactions) {
-			let userStocks = transactions.map(item => item.stock);
-			let checked = {};
-			let uniqueUserStocks = [];
-			userStocks.forEach(stock => {
-				if (!checked[stock.ticker]) {
-					uniqueUserStocks.push(stock);
-					checked[stock.ticker] = true;
-				}
-			});
-			return uniqueUserStocks;
-		}
-	};
+	const currentUser = useSelector(state => state.login.currentUser);
+	const transactions = currentUser.transactions;
 
 	const renderTransactions = () => {
-		return renderUniqueStocks().map(transaction => {
+		return transactions.map(transaction => {
 			return <Transactions key={transaction.id} transaction={transaction} />;
 		});
 	};
 	return (
 		<div className={classes.root}>
 			<h1 className={classes.title}>Portfolio</h1>
+			<h5 className={classes.userBalance}>
+				Your Current Balance: ${currentUser.balance}
+			</h5>
 			{renderTransactions()}
 		</div>
 	);

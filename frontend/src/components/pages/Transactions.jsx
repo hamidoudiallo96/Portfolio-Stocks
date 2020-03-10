@@ -36,28 +36,38 @@ const useStyles = makeStyles({
 
 const Transactions = props => {
 	const classes = useStyles();
-	// const renderTicker = () => {
-	//   if (props.stock.current_price > props.stock.open_price) {
-	//     return <h3 className={classes.low}>({props.stock.ticker})</h3>;
-	//   } else if (props.stock.current_price < props.stock.open_price) {
-	//     return <h3 className={classes.high}>({props.stock.ticker})</h3>;
-	//   } else {
-	//     return <h3 className={classes.med}>({props.stock.ticker})</h3>;
-	//   }
-	// };
-
-	// const handleClick = stockObj => {
-	// 	dispatch(stocksActions.getCurrentStock(stockObj));
-	// 	props.history.push("/purchase");
-	// };
+	const renderTicker = () => {
+		if (
+			props.transaction.stock.current_price > props.transaction.stock.open_price
+		) {
+			return (
+				<h3 className={classes.low}>({props.transaction.stock.ticker})</h3>
+			);
+		} else if (
+			props.transaction.stock.current_price < props.transaction.stock.open_price
+		) {
+			return (
+				<h3 className={classes.high}>({props.transaction.stock.ticker})</h3>
+			);
+		} else {
+			return (
+				<h3 className={classes.med}>({props.transaction.stock.ticker})</h3>
+			);
+		}
+	};
+	let stockTotal =
+		(40 - props.transaction.stock.shares) *
+		props.transaction.stock.current_price;
 	return (
 		<div className={classes.root}>
-			{/* <h2>BUY</h2>
-      {renderTicker()}
-      <p>-</p>
-      <h4 className={classes.shares}>{props.stock.shares} Shares</h4>
-      <p>@</p>
-      <h4>${props.stock.current_price}</h4> */}
+			<h2>BUY</h2>
+			{renderTicker()}
+			<p>-</p>
+			<h4 className={classes.shares}>
+				{40 - props.transaction.stock.shares} Shares
+			</h4>
+			<p>@</p>
+			<h4>${stockTotal.toFixed(2)}</h4>
 		</div>
 	);
 };

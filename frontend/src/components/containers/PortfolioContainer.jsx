@@ -17,15 +17,16 @@ const useStyles = makeStyles({
 		color: "#a12bcc",
 		textAlign: "center",
 		margin: "0 auto 50px auto"
+	},
+	userBalance: {
+		margin: "0 auto"
 	}
 });
 
 const PortfolioContainer = props => {
 	const classes = useStyles();
 	const currentUser = useSelector(state => state.login.currentUser);
-	const transactions = useSelector(
-		state => state.login.currentUser.transactions
-	);
+	const transactions = currentUser.transactions;
 	const renderUniqueStocks = () => {
 		if (transactions) {
 			let userStocks = transactions.map(item => item.stock);
