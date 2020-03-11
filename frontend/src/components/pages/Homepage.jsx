@@ -26,6 +26,7 @@ const useStyles = makeStyles({
 	}
 });
 const Homepage = props => {
+	console.log(props);
 	const classes = useStyles();
 	const currentUser = useSelector(state => state.login.currentUser);
 	const handleClick = () => {
