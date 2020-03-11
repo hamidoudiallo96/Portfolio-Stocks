@@ -9,9 +9,9 @@
 require "http"
 require "json"
 
+Transaction.destroy_all
 Stock.destroy_all
 User.destroy_all
-Transaction.destroy_all
 
 def search(tickers, type, api_key)
   url = "https://cloud.iexapis.com/stable/stock/market/batch/"
