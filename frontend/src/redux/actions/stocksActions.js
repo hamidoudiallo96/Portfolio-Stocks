@@ -1,4 +1,4 @@
-const STOCKS_URL = "http://localhost:3001/stocks";
+const STOCKS_URL = "https://backend.herokuapp.com//stocks";
 const STOCKS_UPDATE = stocksId => `${STOCKS_URL}/${stocksId}`;
 
 const setStocks = stocks => ({
