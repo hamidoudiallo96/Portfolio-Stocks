@@ -21,9 +21,9 @@ def search(tickers, type, api_key)
     token: api_key,
   }
   response = HTTP.get(url, params: params)
-  # .auth("Bearer #{ENV["API_TOKEN"]}").
-  json_response = response.parse
-  json_response
+  # .auth("Bearer #{ENV["API_TOKEN"]}"). => This wasn't working
+  # json_response = response.parse
+  json_response = JSON.parse(response)
 end
 
 iex_stock = search("aapl, fb, msft, googl, amzn, snap, uber, tsla", "quote", ENV["API_TOKEN"])
@@ -38,4 +38,11 @@ def create_stocks(response)
   end
 end
 
+#  console log?
+
 create_stocks(iex_stock)
+# create_stocks(iex_stock)
+
+# let me try something
+
+#  I like the venmo shirt
