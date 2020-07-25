@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/transactions";
+const BASE_URL = "https://stockfolio-api.herokuapp.com/transactions";
 
 const setTransactions = (transactions) => ({
 	type: "GET_TRANSACTIONS",

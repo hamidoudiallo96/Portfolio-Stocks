@@ -1,5 +1,5 @@
 // HTTP Request
-const BASE_URL = "http://localhost:3001/";
+const BASE_URL = "https://stockfolio-api.herokuapp.com/";
 const SIGNUP_URL = `${BASE_URL}/users`;
 const LOGIN_URL = `${BASE_URL}/login`;
 const PERSIST_URL = `${BASE_URL}/auth`;
