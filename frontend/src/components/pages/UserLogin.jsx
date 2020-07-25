@@ -12,22 +12,22 @@ const useStyles = makeStyles({
 		margin: "100px auto 0 auto",
 		width: "35%",
 		padding: "40px",
-		border: "5px solid #a12bcc"
+		border: "5px solid #a12bcc",
 	},
 	header: {
 		textAlign: "center",
-		color: "#a12bcc"
+		color: "#a12bcc",
 	},
 	userForm: {
 		display: "flex",
 		flexDirection: "column",
 		width: "90%",
 		margin: "0 auto",
-		padding: "20px"
+		padding: "20px",
 	},
 	input: {
 		padding: "10px",
-		margin: "15px"
+		margin: "15px",
 	},
 	button: {
 		width: "60%",
@@ -37,31 +37,31 @@ const useStyles = makeStyles({
 		margin: "10px auto 0 auto",
 		"&:hover": {
 			background: "#a12bcc",
-			color: "whitesmoke"
-		}
+			color: "whitesmoke",
+		},
 	},
 	link: {
 		textDecoration: "none",
-		color: "whitesmoke"
-	}
+		color: "whitesmoke",
+	},
 });
 
-const UserLogin = props => {
+const UserLogin = (props) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [loginInput, setLoginInput] = useState({
 		email: "",
-		password: ""
+		password: "",
 	});
 
-	const handleChange = evt => {
+	const handleChange = (evt) => {
 		setLoginInput({ ...loginInput, [evt.target.name]: evt.target.value });
 	};
 
-	const handleSubmit = evt => {
+	const handleSubmit = (evt) => {
 		evt.preventDefault();
 		dispatch(loginActions.loginUserToDB(loginInput));
-		props.history.push("/stocks");
+		props.history.push("/");
 	};
 	return (
 		<div className={classes.root}>

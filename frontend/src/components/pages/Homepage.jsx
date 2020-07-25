@@ -1,17 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-
+import loginActions from "../../redux/actions/loginActions";
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
 		flexDirection: "column",
-		marginTop: "100px"
+		marginTop: "100px",
 	},
 	title: {
 		margin: "0 auto",
-		padding: "40px"
+		padding: "40px",
 	},
 	button: {
 		width: "20%",
@@ -21,17 +21,17 @@ const useStyles = makeStyles({
 		margin: "0 auto",
 		"&:hover": {
 			background: "#a12bcc",
-			color: "whitesmoke"
-		}
-	}
+			color: "whitesmoke",
+		},
+	},
 });
-const Homepage = props => {
-	console.log(props);
+const Homepage = (props) => {
 	const classes = useStyles();
-	const currentUser = useSelector(state => state.login.currentUser);
+	const currentUser = useSelector((state) => state.login.currentUser);
 	const handleClick = () => {
 		props.history.push("/stocks");
 	};
+
 	return (
 		<div>
 			{currentUser.email ? (

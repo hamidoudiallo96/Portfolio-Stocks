@@ -12,7 +12,7 @@ import PortfolioContainer from "./components/containers/PortfolioContainer";
 const Routes = () => {
 	return (
 		<Switch>
-			<Route exact path="/Portfolio-Stocks" component={HomePage} />
+			<Route exact path="/" component={HomePage} />
 			<Route exact path="/signup" component={UserSignUp} />
 			<Route exact path="/login" component={UserLogin} />
 			<Route exact path="/stocks" component={StocksContainer} />
