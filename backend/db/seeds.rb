@@ -14,6 +14,7 @@ Stock.destroy_all
 User.destroy_all
 
 def search(tickers, type, api_key)
+  # puts api_key
   url = "https://cloud.iexapis.com/stable/stock/market/batch/"
   params = {
     symbols: tickers,
@@ -21,12 +22,11 @@ def search(tickers, type, api_key)
     token: api_key,
   }
   response = HTTP.get(url, params: params)
-  # .auth("Bearer #{ENV["API_TOKEN"]}"). => This wasn't working
-  # json_response = response.parse
   json_response = JSON.parse(response)
+  json_response
 end
 
-iex_stock = search("aapl, fb, msft, googl, amzn, snap, uber, tsla", "quote", ENV["API_TOKEN"])
+iex_stock_response = search("aapl, fb, msft, googl, amzn, snap, uber, tsla", "quote", ENV["API_TOKEN"])
 
 def create_stocks(response)
   response.each do |company, stock_info|
@@ -38,11 +38,4 @@ def create_stocks(response)
   end
 end
 
-#  console log?
-
-create_stocks(iex_stock)
-# create_stocks(iex_stock)
-
-# let me try something
-
-#  I like the venmo shirt
+create_stocks(iex_stock_response)
