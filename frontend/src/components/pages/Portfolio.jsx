@@ -1,9 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-
-import stocksActions from "../../redux/actions/stocksActions";
 
 const useStyles = makeStyles({
 	root: {
@@ -11,19 +7,19 @@ const useStyles = makeStyles({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		borderBottom: "5px solid #e6e6e6",
-		alignItems: "center"
+		alignItems: "center",
 	},
 	shares: {
-		alignContent: "center"
+		alignContent: "center",
 	},
 	low: {
-		color: "#f50c2b"
+		color: "#f50c2b",
 	},
 	even: {
-		color: "grey"
+		color: "grey",
 	},
 	high: {
-		color: "#0af229"
+		color: "#0af229",
 	},
 	purchaseButton: {
 		width: "20%",
@@ -33,14 +29,14 @@ const useStyles = makeStyles({
 		margin: "0",
 		"&:hover": {
 			background: "#a12bcc",
-			color: "whitesmoke"
-		}
-	}
+			color: "whitesmoke",
+		},
+	},
 });
 
-const Portfolio = props => {
+const Portfolio = (props) => {
 	const classes = useStyles();
-	const dispatch = useDispatch();
+
 	const renderTicker = () => {
 		if (props.stock.current_price > props.stock.open_price) {
 			return <h3 className={classes.low}>({props.stock.ticker})</h3>;
@@ -51,10 +47,6 @@ const Portfolio = props => {
 		}
 	};
 
-	const handleClick = stockObj => {
-		dispatch(stocksActions.getCurrentStock(stockObj));
-		props.history.push("/purchase");
-	};
 	return (
 		<div className={classes.root}>
 			<h2>BUY</h2>

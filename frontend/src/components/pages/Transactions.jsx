@@ -1,4 +1,5 @@
 import React from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -7,19 +8,19 @@ const useStyles = makeStyles({
 		flexDirection: "row",
 		justifyContent: "space-evenly",
 		borderBottom: "5px solid #e6e6e6",
-		alignItems: "center"
+		alignItems: "center",
 	},
 	shares: {
-		alignContent: "center"
+		alignContent: "center",
 	},
 	low: {
-		color: "#f50c2b"
+		color: "#f50c2b",
 	},
 	even: {
-		color: "grey"
+		color: "grey",
 	},
 	high: {
-		color: "#0af229"
+		color: "#0af229",
 	},
 	purchaseButton: {
 		width: "20%",
@@ -29,13 +30,14 @@ const useStyles = makeStyles({
 		margin: "0",
 		"&:hover": {
 			background: "#a12bcc",
-			color: "whitesmoke"
-		}
-	}
+			color: "whitesmoke",
+		},
+	},
 });
 
-const Transactions = props => {
+const Transactions = (props) => {
 	const classes = useStyles();
+
 	const renderTicker = () => {
 		if (
 			props.transaction.stock.current_price > props.transaction.stock.open_price

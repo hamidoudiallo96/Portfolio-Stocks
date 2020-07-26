@@ -1,5 +1,5 @@
 // HTTP Request
-const BASE_URL = "https://stockfolio-api.herokuapp.com/";
+const BASE_URL = "http://localhost:3001";
 const SIGNUP_URL = `${BASE_URL}/users`;
 const LOGIN_URL = `${BASE_URL}/login`;
 const PERSIST_URL = `${BASE_URL}/auth`;
@@ -26,9 +26,9 @@ const newUserToDB = (userObj) => (dispatch) => {
 	fetch(SIGNUP_URL, config)
 		.then((res) => res.json())
 		.then((userData) => {
-			// debugger;
 			dispatch(setUserAction(userData.user));
 			localStorage.setItem("token", userData.token);
+			localStorage.setItem("user", JSON.stringify(userData.user.id));
 		})
 		.catch((error) => console.log(error));
 };
@@ -46,9 +46,9 @@ const loginUserToDB = (userObj) => (dispatch) => {
 	fetch(LOGIN_URL, config)
 		.then((res) => res.json())
 		.then((userData) => {
-			debugger;
 			dispatch(setUserAction(userData.user));
 			localStorage.setItem("token", userData.token);
+			localStorage.setItem("user", JSON.stringify(userData.user.id));
 		})
 		.catch((error) => console.log(error));
 };
@@ -64,7 +64,6 @@ const persistUser = () => (dispatch) => {
 	fetch(PERSIST_URL, config)
 		.then((res) => res.json())
 		.then((userData) => {
-			// debugger;
 			dispatch(setUserAction(userData));
 		})
 		.catch((error) => console.log(error));

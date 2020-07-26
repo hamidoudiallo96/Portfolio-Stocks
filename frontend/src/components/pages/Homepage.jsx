@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import loginActions from "../../redux/actions/loginActions";
+
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
@@ -37,7 +37,7 @@ const Homepage = (props) => {
 			{currentUser.email ? (
 				<div className={classes.root}>
 					<h1 className={classes.title}>Welcome to StockFolio</h1>
-					<h4 className={classes.title}>Welcome Again {currentUser.name}</h4>
+					<h4 className={classes.title}>Welcome {currentUser.name}</h4>
 					<Button
 						className={classes.button}
 						variant="outlined"

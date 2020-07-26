@@ -1,11 +1,12 @@
-const BASE_URL = "https://stockfolio-api.herokuapp.com/transactions";
+const BASE_URL = "http://localhost:3001/transactions";
 
 const setTransactions = (transactions) => ({
 	type: "GET_TRANSACTIONS",
 	payload: transactions,
 });
 
-const getTransactionsFromDB = (userId) => (dispatch) => {
+const getTransactionsFromDB = () => (dispatch) => {
+	let user = JSON.parse(localStorage.user);
 	let config = {
 		method: "GET",
 		headers: {
@@ -16,7 +17,10 @@ const getTransactionsFromDB = (userId) => (dispatch) => {
 	fetch(BASE_URL, config)
 		.then((res) => res.json())
 		.then((transactionData) => {
-			dispatch(setTransactions(transactionData));
+			let userTransactions = transactionData.filter(
+				(transaction) => transaction.user.id === user
+			);
+			dispatch(setTransactions(userTransactions));
 		})
 		.catch((error) => console.log(error));
 };

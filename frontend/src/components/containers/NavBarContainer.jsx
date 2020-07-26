@@ -8,24 +8,24 @@ import NavBar from "../pages/NavBar";
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
 	},
 	link: {
-		textDecoration: "none"
+		textDecoration: "none",
 	},
 	logo: {
 		color: "#a12bcc",
-		paddingLeft: "40px"
-	}
+		paddingLeft: "40px",
+	},
 });
 
 const NavBarContainer = () => {
 	const classes = useStyles();
-	const currentUser = useSelector(state => state.login.currentUser);
+	const currentUser = useSelector((state) => state.login.currentUser);
 	return (
 		<div className={classes.root}>
 			{currentUser.email ? (
-				<Link className={classes.link} to="/stocks">
+				<Link className={classes.link} to="/">
 					<h1 className={classes.logo}>StockFolio</h1>
 				</Link>
 			) : (

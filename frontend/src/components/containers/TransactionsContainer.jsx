@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
-import loginActions from "../../redux/actions/loginActions";
+import purchaseActions from "../../redux/actions/purchaseActions";
 import Transactions from "../pages/Transactions";
 
 const useStyles = makeStyles({
@@ -24,16 +24,19 @@ const useStyles = makeStyles({
 });
 
 const TransactionsContainer = (props) => {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(loginActions.persistUser());
-	}, [dispatch]);
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const currentUser = useSelector((state) => state.login.currentUser);
-	const transactions = currentUser.transactions;
+	useEffect(() => {
+		dispatch(purchaseActions.getTransactionsFromDB());
+	}, [dispatch]);
+
+	const userTransactions = useSelector(
+		(state) => state.transaction.transactions
+	);
 
 	const renderTransactions = () => {
-		return transactions.map((transaction) => {
+		return userTransactions.map((transaction) => {
 			return <Transactions key={transaction.id} transaction={transaction} />;
 		});
 	};

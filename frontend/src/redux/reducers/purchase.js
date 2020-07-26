@@ -1,12 +1,11 @@
 const initialState = {
-	transactions: []
+	transactions: [],
 };
 
 const transactionReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case "GET_TRANSACTIONS":
 			return { ...state, transactions: payload };
-
 		default:
 			return state;
 	}
