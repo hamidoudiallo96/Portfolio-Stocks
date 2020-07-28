@@ -6,7 +6,7 @@ I built this application using React/Redux for the frontend and Ruby on Rails fo
 
 
 
-### Live: [StockFolio](https://crwn-clothings-frontend.herokuapp.com/)
+### Live: [StockFolio](https://stockfolio-frontend.herokuapp.com/)
 
 
 ## User Story:
