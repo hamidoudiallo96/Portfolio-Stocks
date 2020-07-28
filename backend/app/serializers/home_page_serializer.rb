@@ -1,3 +1,3 @@
 class HomePageSerializer < ActiveModel::Serializer
-  attributes :id, :index
+  attributes :id
 end

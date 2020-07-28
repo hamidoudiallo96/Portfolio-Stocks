@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "homepages#index"
+  root "home_pages#index"
   get "/auth", to: "auth#persist"
   post "/login", to: "auth#login"
   resources :users, only: [:index, :show, :create, :update]
